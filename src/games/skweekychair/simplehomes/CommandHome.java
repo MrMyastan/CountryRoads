@@ -21,6 +21,7 @@ public class CommandHome implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
         if (sender instanceof Player != true) {
+            sender.sendMessage("Sorry, but you have to be a player to use this command");
             return false;
         }
         
@@ -35,6 +36,7 @@ public class CommandHome implements TabExecutor {
         }
 
         if (toTeleportTo == null) {
+            teleportee.sendMessage("Specified home does not exist or you have no default home");
             return false;
         }
 

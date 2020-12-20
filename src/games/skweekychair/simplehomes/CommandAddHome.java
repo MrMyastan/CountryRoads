@@ -22,10 +22,12 @@ public class CommandAddHome implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
         if (args.length < 1) {
+            sender.sendMessage("You must specify a name for your new home");
             return false;
         }
 
         if (sender instanceof Player != true) {
+            sender.sendMessage("Sorry, but you have to be a player to use this command");
             return false;
         }
 
