@@ -1,0 +1,26 @@
+name: SimpleHomes
+main: games.skweekychair.simplehomes.SimpleHomesPlugin
+version: 1.0
+api-version: 1.16
+commands:
+  addhome:
+    description: add a new home at current locatin with name
+    usage: /<command> [name]
+    permission: simplehomes.addhome
+  home:
+    description: go to home name default or specified by name
+    usage: /<command> (name)
+    permission: simplehomes.home
+  delhome:
+    description: delete home specified by name, and optionally if you have manageotherhomes permission, the home owned by player
+    usage: /<command> [name] (player)
+    permission: simplehomes.delhome
+permissions:
+  simplehomes.addhome:
+    default: true
+  simplehomes.home:
+    default: true
+  simplehomes.delhome:
+    default: true
+  simplehomes.manageotherhomes:
+    default: op
