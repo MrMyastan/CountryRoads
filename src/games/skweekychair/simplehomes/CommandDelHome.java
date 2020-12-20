@@ -1,12 +1,16 @@
 package games.skweekychair.simplehomes;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 public class CommandDelHome implements TabExecutor {
 
@@ -56,9 +60,29 @@ public class CommandDelHome implements TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        
+        List<String> names = new ArrayList<String>();
+        if (args.length > 2) {return names;}
+        
+        if (args.length == 1) {
+            if (sender instanceof Player != true) {return names;}
+            Player teleportee = (Player) sender;
+
+            if (!config.isConfigurationSection(teleportee.getName())) {return names;}
+
+            Set<String> namesSet = config.getConfigurationSection(teleportee.getName()).getKeys(false);
+            names.addAll(namesSet);
+        } else if (args.length == 2) {
+            if (!sender.hasPermission("simplehomes.manageotherhomes")) {return names;}
+            Set<String> namesSet = config.getKeys(false);
+            names.addAll(namesSet);
+        }
+
+        List<String> returns = new ArrayList<String>();
+        StringUtil.copyPartialMatches(args[args.length - 1], names, returns);
+        Collections.sort(returns);
+        return returns;
     }
     
 }

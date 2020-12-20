@@ -1,5 +1,6 @@
 package games.skweekychair.simplehomes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.Command;
@@ -21,13 +22,13 @@ public class CommandAddHome implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
-        if (args.length < 1) {
-            sender.sendMessage("You must specify a name for your new home");
+        if (sender instanceof Player != true) {
+            sender.sendMessage("Sorry, but you have to be a player to use this command");
             return false;
         }
 
-        if (sender instanceof Player != true) {
-            sender.sendMessage("Sorry, but you have to be a player to use this command");
+        if (args.length < 1) {
+            sender.sendMessage("You must specify a name for your new home");
             return false;
         }
 
@@ -44,8 +45,10 @@ public class CommandAddHome implements TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-        return null;
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        // this just keeps it from suggesting online player names
+        List<String> returns = new ArrayList<String>();
+        return returns;
     }
     
 }

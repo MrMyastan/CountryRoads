@@ -1,6 +1,9 @@
 package games.skweekychair.simplehomes;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -8,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 public class CommandHome implements TabExecutor {
 
@@ -46,9 +50,36 @@ public class CommandHome implements TabExecutor {
     }
     
     @Override
-    public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<String> onTabComplete(CommandSender sender, Command command, String name, String[] args) {
+        
+        List<String> names = new ArrayList<String>();
+        if (args.length > 1 || sender instanceof Player != true) {return names;}
+
+        Player teleportee = (Player) sender;
+
+        if (!config.isConfigurationSection(teleportee.getName())) {return names;}
+
+        Set<String> namesSet = config.getConfigurationSection(teleportee.getName()).getKeys(false);
+        names.addAll(namesSet);
+
+        List<String> returns = new ArrayList<String>();
+        StringUtil.copyPartialMatches(args[0], names, returns);
+        Collections.sort(returns);
+        return returns;
     }
+
+    /* 	
+
+        How I implemented tab completion for my warp command
+
+    List<String> names = new ArrayList<String>();
+    if (args.length > 1) {return names;}
+    Set<String> namesSet = teleportLocations.keySet();
+    names.addAll(namesSet);
+    List<String> returns = new ArrayList<String>();
+    StringUtil.copyPartialMatches(args[0], names, returns);
+    Collections.sort(returns);
+    return returns;
+    */
 
 }
