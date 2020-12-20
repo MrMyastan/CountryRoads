@@ -27,9 +27,9 @@ Not sure what will happen if the entry for a person is doubled (ie, they added h
 I'm currently not sure how to switch to UUIDs without breaking offline mode servers but I'll hopefuly get around to figuring it out
 # To-Do
 - [x] write this readme
-- [ ] improve error messages
+- [x] improve error messages
 - [ ] comment my dang computing instructions
 - [ ] maybe a list homes feature?
-- [ ] tab completion
+- [x] tab completion
 - [ ] store by UUID?
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
