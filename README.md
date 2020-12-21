@@ -33,3 +33,4 @@ I'm currently not sure how to switch to UUIDs without breaking offline mode serv
 - [x] tab completion
 - [ ] store by UUID?
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
+- [ ] put a little color in the error messages (actual color, not swearing, although maybe a swearing mode would be nifty...)
