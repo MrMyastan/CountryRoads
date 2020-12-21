@@ -30,7 +30,7 @@ public class CommandDelHome implements TabExecutor {
             return false;
         }
 
-        String owner = null;
+        String owner;
 
         /* I am aware this is a little spaghetti, but it covers every case that should come up
         

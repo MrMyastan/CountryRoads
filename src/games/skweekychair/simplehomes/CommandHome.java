@@ -35,8 +35,7 @@ public class CommandHome implements TabExecutor {
         // Ty Tordek for this clever line of code
         String path = teleportee.getName() + "." + (args.length == 0 ? "default" : args[0]);
 
-        Location toTeleportTo = null;
-        toTeleportTo = config.getLocation(path);
+        Location toTeleportTo = config.getLocation(path);
 
         if (toTeleportTo == null) {
             teleportee.sendMessage("Specified home does not exist or you have no default home");
