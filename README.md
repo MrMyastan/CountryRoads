@@ -1,10 +1,10 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Tested on: Spigot 1.16.1](https://img.shields.io/badge/Tested%20on-Spigot%201.16.1-yellow.svg?logo=minecraft)](https://www.spigotmc.org/) [![Languag: Java](https://img.shields.io/badge/Language-Java-red?logo=java)](https://www.java.com/en/) ![API Jar: 1.16.1-R0.1](https://img.shields.io/badge/API%20Jar-1.16.1--R0.1-blueviolet) ![Version: v1.1](https://img.shields.io/badge/Version-v1.0-blue) ![Why am I doing this?: I don't know](https://img.shields.io/badge/Why%20am%20I%20making%20these%3F-I%20don't%20know-lightgrey)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Tested on: Spigot 1.16.1](https://img.shields.io/badge/Tested%20on-Spigot%201.16.1-yellow.svg?logo=minecraft)](https://www.spigotmc.org/) [![Languag: Java](https://img.shields.io/badge/Language-Java-red?logo=java)](https://www.java.com/en/) ![API Jar: 1.16.1-R0.1](https://img.shields.io/badge/API%20Jar-1.16.1--R0.1-blueviolet) ![Version: v1.0](https://img.shields.io/badge/Version-v1.0-blue) ![Why am I doing this?: I don't know](https://img.shields.io/badge/Why%20am%20I%20making%20these%3F-I%20don't%20know-lightgrey)
 # SimpleHomes
 A basic Spigot-API Minecraft plugin for a home system.
 You can feel free to modify the code for your own use (just make sure to credit me for my code), and use the plugin for your own server!
 Any suggestions for improvements or features are welcome!
 # Compatibility
-I've tested the plugin using a Spigot 1.16.1 server and made the plugin using the 1.16.1-R0.1 Spigot-API jar
+I've tested the plugin using a Spigot 1.16.1 server and made the plugin using the 1.16.1-R0.1 Spigot-API jar, and it was compiled with Java 11 (I should probably create a Java 8 version...)
 # Features
 - home command
   - teleport to your home specified by \[name\] or if no home is specified your home named default
@@ -27,9 +27,10 @@ Not sure what will happen if the entry for a person is doubled (ie, they added h
 I'm currently not sure how to switch to UUIDs without breaking offline mode servers but I'll hopefuly get around to figuring it out
 # To-Do
 - [x] write this readme
-- [ ] improve error messages
+- [x] improve error messages
 - [ ] comment my dang computing instructions
 - [ ] maybe a list homes feature?
-- [ ] tab completion
+- [x] tab completion
 - [ ] store by UUID?
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
+- [ ] put a little color in the error messages (actual color, not swearing, although maybe a swearing mode would be nifty...)
