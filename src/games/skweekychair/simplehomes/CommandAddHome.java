@@ -38,7 +38,7 @@ public class CommandAddHome implements TabExecutor {
             config.createSection(toBeOwner.getName());
         }
 
-        config.getConfigurationSection(toBeOwner.getName()).set(args[0], toBeOwner.getLocation());;
+        config.getConfigurationSection(toBeOwner.getName()).set(args[0], toBeOwner.getLocation());
         mainPlugin.saveConfig();
 
         return true;
