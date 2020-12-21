@@ -17,13 +17,14 @@ public class CommandHome implements TabExecutor {
 
     FileConfiguration config;
 
-    public CommandHome(FileConfiguration mainConfig) {
-        config = mainConfig;
+    public CommandHome(FileConfiguration pluginConfig) {
+        config = pluginConfig;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
+        // yes i am aware this != true is ugly but would you rather have (!(...)) or an extra layer of nesting
         if (sender instanceof Player != true) {
             sender.sendMessage("Sorry, but you have to be a player to use this command");
             return false;
@@ -50,16 +51,28 @@ public class CommandHome implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String name, String[] args) {
         
+        /* There doesn't seem to be a way to indicate erroneous or extra command arguments (or at least one
+        that doesnt require a bunch of effort like hooking into brigadier) so i return an empty list of
+        auto fills because returning null makes it use the default auto complete method which is names of
+        online players */
+
         List<String> names = new ArrayList<String>();
         if (args.length > 1 || sender instanceof Player != true) {return names;}
 
         Player teleportee = (Player) sender;
 
+        // if theres no section for storing the players homes, then return no home names, also convenietly makes
+        // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
         if (!config.isConfigurationSection(teleportee.getName())) {return names;}
 
+        // get the names of all the players homes
         Set<String> namesSet = config.getConfigurationSection(teleportee.getName()).getKeys(false);
         names.addAll(namesSet);
 
+        /* I dont think I can copy the partial matches back into itself, so construct a new list!
+        also I've been doing it like this cuz thats how I saw someone do it on the forums but I
+        think I can copy the partial matches of the set into the list so then I'll only need 
+        one list and dont have to addAll, so I should get around to trying that */
         List<String> returns = new ArrayList<String>();
         StringUtil.copyPartialMatches(args[0], names, returns);
         Collections.sort(returns);

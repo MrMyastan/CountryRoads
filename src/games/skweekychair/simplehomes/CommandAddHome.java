@@ -11,11 +11,11 @@ import org.bukkit.entity.Player;
 
 public class CommandAddHome implements TabExecutor {
 
-    SimpleHomesPlugin mainPlugin;
+    SimpleHomesPlugin plugin;
     FileConfiguration config;
 
     public CommandAddHome(SimpleHomesPlugin mainInstance) {
-        mainPlugin = mainInstance;
+        plugin = mainInstance;
         config = mainInstance.getConfig();
     }
 
@@ -34,12 +34,15 @@ public class CommandAddHome implements TabExecutor {
 
         Player toBeOwner = (Player) sender;
 
+        // if the player doesn't have a section for storing their homes then create one so we don't
+        // get an NPE trying to set a value in it
         if (!config.isConfigurationSection(toBeOwner.getName())) {
             config.createSection(toBeOwner.getName());
         }
 
+        // save the new home location in the players storage section
         config.getConfigurationSection(toBeOwner.getName()).set(args[0], toBeOwner.getLocation());
-        mainPlugin.saveConfig();
+        plugin.saveConfig();
 
         return true;
     }
