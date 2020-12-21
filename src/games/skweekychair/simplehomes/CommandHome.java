@@ -31,13 +31,11 @@ public class CommandHome implements TabExecutor {
         
         Player teleportee = (Player) sender;
 
-        Location toTeleportTo = null;
+        // Ty Tordek for this clever line of code
+        String path = teleportee.getName() + "." + (args.length == 0 ? "default" : args[0]);
 
-        if (args.length >= 1) {
-            toTeleportTo = config.getLocation(teleportee.getName() + "." + args[0]);
-        } else {
-            toTeleportTo = config.getLocation(teleportee.getName() + ".default");
-        }
+        Location toTeleportTo = null;
+        toTeleportTo = config.getLocation(path);
 
         if (toTeleportTo == null) {
             teleportee.sendMessage("Specified home does not exist or you have no default home");
