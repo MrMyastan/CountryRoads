@@ -4,7 +4,7 @@ A basic Spigot-API Minecraft plugin for a home system.
 You can feel free to modify the code for your own use (just make sure to credit me for my code), and use the plugin for your own server!
 Any suggestions for improvements or features are welcome!
 # Compatibility
-I've tested the plugin using a Spigot 1.16.1 server and made the plugin using the 1.16.1-R0.1 Spigot-API jar
+I've tested the plugin using a Spigot 1.16.1 server and made the plugin using the 1.16.1-R0.1 Spigot-API jar, and it was compiled with Java 11 (I should probably create a Java 8 version...)
 # Features
 - home command
   - teleport to your home specified by \[name\] or if no home is specified your home named default
