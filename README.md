@@ -28,7 +28,7 @@ I'm currently not sure how to switch to UUIDs without breaking offline mode serv
 # To-Do
 - [x] write this readme
 - [x] improve error messages
-- [ ] comment my dang computing instructions
+- [x] comment my dang computing instructions
 - [ ] maybe a list homes feature?
 - [x] tab completion
 - [ ] store by UUID?
