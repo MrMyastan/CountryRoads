@@ -36,12 +36,12 @@ public class CommandAddHome implements TabExecutor {
 
         // if the player doesn't have a section for storing their homes then create one so we don't
         // get an NPE trying to set a value in it
-        if (!config.isConfigurationSection(toBeOwner.getName())) {
-            config.createSection(toBeOwner.getName());
+        if (!config.isConfigurationSection(toBeOwner.getUniqueId().toString())) {
+            config.createSection(toBeOwner.getUniqueId().toString());
         }
 
         // save the new home location in the players storage section
-        config.getConfigurationSection(toBeOwner.getName()).set(args[0], toBeOwner.getLocation());
+        config.getConfigurationSection(toBeOwner.getUniqueId().toString()).set(args[0], toBeOwner.getLocation());
         plugin.saveConfig();
 
         return true;

@@ -33,7 +33,7 @@ public class CommandHome implements TabExecutor {
         Player teleportee = (Player) sender;
 
         // Ty Tordek for this clever line of code
-        String path = teleportee.getName() + "." + (args.length == 0 ? "default" : args[0]);
+        String path = teleportee.getUniqueId().toString() + "." + (args.length == 0 ? "default" : args[0]);
 
         Location toTeleportTo = config.getLocation(path);
 
@@ -62,10 +62,10 @@ public class CommandHome implements TabExecutor {
 
         // if theres no section for storing the players homes, then return no home names, also convenietly makes
         // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
-        if (!config.isConfigurationSection(teleportee.getName())) {return names;}
+        if (!config.isConfigurationSection(teleportee.getUniqueId().toString())) {return names;}
 
         // get the names of all the players homes
-        Set<String> namesSet = config.getConfigurationSection(teleportee.getName()).getKeys(false);
+        Set<String> namesSet = config.getConfigurationSection(teleportee.getUniqueId().toString()).getKeys(false);
         names.addAll(namesSet);
 
         /* I dont think I can copy the partial matches back into itself, so construct a new list!
