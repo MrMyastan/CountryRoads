@@ -112,12 +112,13 @@ public class CommandDelHome implements TabExecutor {
         if (args.length == 1) {
             if (sender instanceof Player != true) {return names;}
             Player teleportee = (Player) sender;
+            String teleporteeUUIDStr = teleportee.getUniqueId().toString();
 
             // see this section in CommandHome
-            if (!config.isConfigurationSection(teleportee.getUniqueId().toString())) {return names;}
+            if (!config.isConfigurationSection(teleporteeUUIDStr)) {return names;}
 
             // get the names of the player's homes
-            Set<String> namesSet = config.getConfigurationSection(teleportee.getUniqueId().toString()).getKeys(false);
+            Set<String> namesSet = config.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
             names.addAll(namesSet);
         } else if (args.length == 2) {
             if (!sender.hasPermission("simplehomes.manageotherhomes")) {return names;}

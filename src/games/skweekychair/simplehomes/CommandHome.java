@@ -61,13 +61,14 @@ public class CommandHome implements TabExecutor {
         if (args.length > 1 || sender instanceof Player != true) {return returns;}
 
         Player teleportee = (Player) sender;
+        String teleporteeUUIDStr = teleportee.getUniqueId().toString();
 
         // if theres no section for storing the players homes, then return no home names, also convenietly makes
         // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
-        if (!config.isConfigurationSection(teleportee.getUniqueId().toString())) {return returns;}
+        if (!config.isConfigurationSection(teleporteeUUIDStr)) {return returns;}
 
         // get the names of all the players homes
-        Set<String> names = config.getConfigurationSection(teleportee.getUniqueId().toString()).getKeys(false);
+        Set<String> names = config.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
 
         /* I dont think I can copy the partial matches back into itself, so construct a new list!
         also I've been doing it like this cuz thats how I saw someone do it on the forums but I
