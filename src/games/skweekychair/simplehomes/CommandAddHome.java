@@ -3,6 +3,7 @@ package games.skweekychair.simplehomes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -23,12 +24,12 @@ public class CommandAddHome implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         
         if (sender instanceof Player != true) {
-            sender.sendMessage("Sorry, but you have to be a player to use this command");
+            sender.sendMessage(ChatColor.RED + "Sorry, but you have to be a player to use this command");
             return false;
         }
 
         if (args.length < 1) {
-            sender.sendMessage("You must specify a name for your new home");
+            sender.sendMessage(ChatColor.RED + "You must specify a name for your new home");
             return false;
         }
 

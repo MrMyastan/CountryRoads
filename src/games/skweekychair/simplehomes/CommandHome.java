@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -26,7 +27,7 @@ public class CommandHome implements TabExecutor {
         
         // yes i am aware this != true is ugly but would you rather have (!(...)) or an extra layer of nesting
         if (sender instanceof Player != true) {
-            sender.sendMessage("Sorry, but you have to be a player to use this command");
+            sender.sendMessage(ChatColor.RED + "Sorry, but you have to be a player to use this command");
             return false;
         }
         
@@ -38,7 +39,7 @@ public class CommandHome implements TabExecutor {
         Location toTeleportTo = config.getLocation(path);
 
         if (toTeleportTo == null) {
-            teleportee.sendMessage("Specified home does not exist or you have no default home");
+            teleportee.sendMessage(ChatColor.RED + "Specified home does not exist or you have no default home");
             return false;
         }
 

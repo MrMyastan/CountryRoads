@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -28,7 +29,7 @@ public class CommandDelHome implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length < 1) {
-            sender.sendMessage("You need to at least specify a home to delete");
+            sender.sendMessage(ChatColor.RED + "You need to at least specify a home to delete");
             return false;
         }
 
@@ -54,7 +55,7 @@ public class CommandDelHome implements TabExecutor {
         (or can they? hm.... conversation for another comment) */
         if (args.length >= 2) {
             if (!sender.hasPermission("simplehomes.manageotherhomes")) {
-                sender.sendMessage("You do not have permission to delete other people's home locations");
+                sender.sendMessage(ChatColor.RED + "You do not have permission to delete other people's home locations");
                 return false;
             }
 
@@ -76,7 +77,7 @@ public class CommandDelHome implements TabExecutor {
             }
 
             if (owner == null) {
-                sender.sendMessage("Specified owner does not have a home");
+                sender.sendMessage(ChatColor.RED + "Specified owner does not have a home");
                 return false;
             }
 
@@ -84,14 +85,14 @@ public class CommandDelHome implements TabExecutor {
             Player player = (Player) sender;
             owner = player.getUniqueId().toString();
         } else {
-            sender.sendMessage("You must specify who the home belongs to");
+            sender.sendMessage(ChatColor.RED + "You must specify who the home belongs to");
             return false;
         }
 
         String path = owner + "." + args[0];
 
         if (!config.contains(path)) {
-            sender.sendMessage("Specified home could not be found");
+            sender.sendMessage(ChatColor.RED + "Specified home could not be found");
             return false;
         }
 
