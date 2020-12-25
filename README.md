@@ -23,16 +23,15 @@ I've tested the plugin using a Spigot 1.16.1 server and made the plugin using th
   - ops have permission to delete other's homes by default
   - usage: /delhome \[name\] (owner)
 # Notes
-Right now I'm storing home locations under peoples usernames and not their UUIDs, so if someone changes their mc name, they will lose access to their homes, BUT this can be easily remedied by changing their old name to their new name in the plugin's config.yml\
-Not sure what will happen if the entry for a person is doubled (ie, they added home locations and then you changed their old name to their new name so there are two sets of homes under the same name), so i would advise merging the two sets of entries\
-I'm currently not sure how to switch to UUIDs without breaking offline mode servers but I'll hopefuly get around to figuring it out
+If you are using offline mode and for whatever reason one of your players changes their name (and thus their offline mode UUID) you will need to replace their old offline mode UUID with their new offline mode UUID in the config for them to get access to their homes again\
+Not sure what will happen if the entry for a person is doubled (ie, using offline mode and someone added home locations after changing their name and then you changed their old UUID to their new UUID so there are two sets of homes under the same UUID), so I would advise merging the two sets of entries\
 # To-Do
 - [x] write this readme
 - [x] improve error messages
 - [x] comment my dang computing instructions
 - [ ] maybe a list homes feature?
 - [x] tab completion
-- [ ] store by UUID?
+- [x] store by UUID?
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
 - [ ] put a little color in the error messages (actual color, not swearing, although maybe a swearing mode would be nifty...)
 - [ ] see if i can switch to just set and list instead of extra list in tab completion
