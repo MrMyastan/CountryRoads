@@ -28,7 +28,8 @@ public class CommandHome implements TabExecutor {
         // yes i am aware this != true is ugly but would you rather have (!(...)) or an extra layer of nesting
         if (sender instanceof Player != true) {
             sender.sendMessage(ChatColor.RED + "Sorry, but you have to be a player to use this command");
-            return false;
+            // Not a syntax problem so why return false to display usage?
+            return true;
         }
         
         Player teleportee = (Player) sender;

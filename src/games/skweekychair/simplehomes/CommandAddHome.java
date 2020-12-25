@@ -25,7 +25,8 @@ public class CommandAddHome implements TabExecutor {
         
         if (sender instanceof Player != true) {
             sender.sendMessage(ChatColor.RED + "Sorry, but you have to be a player to use this command");
-            return false;
+            // Not a syntax problem so why return false to display usage?
+            return true;
         }
 
         if (args.length < 1) {
