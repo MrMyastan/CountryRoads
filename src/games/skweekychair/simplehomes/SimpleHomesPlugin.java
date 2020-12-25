@@ -11,7 +11,7 @@ public class SimpleHomesPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         this.getCommand("addhome").setExecutor(new CommandAddHome(this));
-        this.getCommand("home").setExecutor(new CommandHome(getConfig()));
+        this.getCommand("home").setExecutor(new CommandHome(getConfig().getConfigurationSection("homes")));
         this.getCommand("delhome").setExecutor(new CommandDelHome(this));
 
     }

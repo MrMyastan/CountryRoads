@@ -22,6 +22,8 @@ I've tested the plugin using a Spigot 1.16.1 server and made the plugin using th
   - all players have permission to use this command by default
   - ops have permission to delete other's homes by default
   - usage: /delhome \[name\] (owner)
+- in the config you can set max number of homes or set it to 0 or less disables the limit
+  - if you lower the limit and a player has more than the new limit they can keep their homes but will have delete homes until they have less than the limit if they want to add a new home
 # Notes
 If you are using offline mode and for whatever reason one of your players changes their name (and thus their offline mode UUID) you will need to replace their old offline mode UUID with their new offline mode UUID in the config for them to get access to their homes again\
 Not sure what will happen if the entry for a person is doubled (ie, using offline mode and someone added home locations after changing their name and then you changed their old UUID to their new UUID so there are two sets of homes under the same UUID), so I would advise merging the two sets of entries\
@@ -32,7 +34,8 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [ ] maybe a list homes feature?
 - [x] tab completion
 - [x] store by UUID?
-- [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
+- [x] system for limiting number of homes
+- [ ] api for players number of remaining homes
 - [x] put a little color in the error messages
 - [ ] ~~error messages: gordon ramsay edition mode~~
 - [x] see if i can switch to just set and list instead of extra list in tab completion

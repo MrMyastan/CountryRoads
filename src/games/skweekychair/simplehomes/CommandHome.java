@@ -10,16 +10,16 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 public class CommandHome implements TabExecutor {
 
-    FileConfiguration config;
+    ConfigurationSection homes;
 
-    public CommandHome(FileConfiguration pluginConfig) {
-        config = pluginConfig;
+    public CommandHome(ConfigurationSection mainHomes) {
+        homes = mainHomes;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CommandHome implements TabExecutor {
         // Ty Tordek for this clever line of code
         String path = teleportee.getUniqueId().toString() + "." + (args.length == 0 ? "default" : args[0]);
 
-        Location toTeleportTo = config.getLocation(path);
+        Location toTeleportTo = homes.getLocation(path);
 
         if (toTeleportTo == null) {
             teleportee.sendMessage(ChatColor.RED + "Specified home does not exist or you have no default home");
@@ -65,10 +65,10 @@ public class CommandHome implements TabExecutor {
 
         // if theres no section for storing the players homes, then return no home names, also convenietly makes
         // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
-        if (!config.isConfigurationSection(teleporteeUUIDStr)) {return returns;}
+        if (!homes.isConfigurationSection(teleporteeUUIDStr)) {return returns;}
 
         // get the names of all the players homes
-        Set<String> names = config.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
+        Set<String> names = homes.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
 
         /* I dont think I can copy the partial matches back into itself, so construct a new list!
         also I've been doing it like this cuz thats how I saw someone do it on the forums but I

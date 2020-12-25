@@ -11,18 +11,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 public class CommandDelHome implements TabExecutor {
 
     SimpleHomesPlugin plugin;
-    FileConfiguration config;
+    ConfigurationSection homes;
 
     public CommandDelHome(SimpleHomesPlugin mainInstance) {
         plugin = mainInstance;
-        config = mainInstance.getConfig();
+        homes = mainInstance.getConfig().getConfigurationSection("homes");
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CommandDelHome implements TabExecutor {
             OTHER IDEA: seperate managing (listing, deleting, teleporting to) other players homes into a 
             other homes command or smth */
             owner = null;
-            for (String key : config.getKeys(false)) {
+            for (String key : homes.getKeys(false)) {
                 String homeHaver = Bukkit.getOfflinePlayer(UUID.fromString(key)).getName();
                 if (homeHaver.equals(args[1])) {
                     owner = key;
@@ -91,12 +91,12 @@ public class CommandDelHome implements TabExecutor {
 
         String path = owner + "." + args[0];
 
-        if (!config.contains(path)) {
+        if (!homes.contains(path)) {
             sender.sendMessage(ChatColor.RED + "Specified home could not be found");
             return false;
         }
 
-        config.set(path, null);
+        homes.set(path, null);
         plugin.saveConfig();
 
         return true;
@@ -115,16 +115,16 @@ public class CommandDelHome implements TabExecutor {
             String teleporteeUUIDStr = teleportee.getUniqueId().toString();
 
             // see this section in CommandHome
-            if (!config.isConfigurationSection(teleporteeUUIDStr)) {return names;}
+            if (!homes.isConfigurationSection(teleporteeUUIDStr)) {return names;}
 
             // get the names of the player's homes
-            Set<String> namesSet = config.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
+            Set<String> namesSet = homes.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
             names.addAll(namesSet);
         } else if (args.length == 2) {
             if (!sender.hasPermission("simplehomes.manageotherhomes")) {return names;}
             
             // get the names of players with homes
-            for (String key : config.getKeys(false)) {
+            for (String key : homes.getKeys(false)) {
                 String ownerName = Bukkit.getOfflinePlayer(UUID.fromString(key)).getName();
                 names.add(ownerName);
             }
