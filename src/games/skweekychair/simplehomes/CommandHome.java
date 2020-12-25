@@ -57,24 +57,22 @@ public class CommandHome implements TabExecutor {
         auto fills because returning null makes it use the default auto complete method which is names of
         online players */
 
-        List<String> names = new ArrayList<String>();
-        if (args.length > 1 || sender instanceof Player != true) {return names;}
+        List<String> returns = new ArrayList<String>();
+        if (args.length > 1 || sender instanceof Player != true) {return returns;}
 
         Player teleportee = (Player) sender;
 
         // if theres no section for storing the players homes, then return no home names, also convenietly makes
         // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
-        if (!config.isConfigurationSection(teleportee.getUniqueId().toString())) {return names;}
+        if (!config.isConfigurationSection(teleportee.getUniqueId().toString())) {return returns;}
 
         // get the names of all the players homes
-        Set<String> namesSet = config.getConfigurationSection(teleportee.getUniqueId().toString()).getKeys(false);
-        names.addAll(namesSet);
+        Set<String> names = config.getConfigurationSection(teleportee.getUniqueId().toString()).getKeys(false);
 
         /* I dont think I can copy the partial matches back into itself, so construct a new list!
         also I've been doing it like this cuz thats how I saw someone do it on the forums but I
         think I can copy the partial matches of the set into the list so then I'll only need 
         one list and dont have to addAll, so I should get around to trying that */
-        List<String> returns = new ArrayList<String>();
         StringUtil.copyPartialMatches(args[0], names, returns);
         Collections.sort(returns);
         return returns;
