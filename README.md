@@ -35,7 +35,7 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
 - [x] put a little color in the error messages
 - [ ] ~~error messages: gordon ramsay edition mode~~
-- [ ] see if i can switch to just set and list instead of extra list in tab completion
+- [x] see if i can switch to just set and list instead of extra list in tab completion
 - [ ] store some frequently used returns in variables
 # Notes on the API idea
 It looks like the best way for me to implement an API for a number of homes thing or whatever for this plugin would be to define an interface and an implementation, in my plugin register the implementation (provider) for the interface (service) with Spigot's service manager, and then distribute the the interface as a jar or whatever that people can import in their project and set their plugin to depend on mine. It seems like a clean and simple way to allow plugins to integrate with mine and means they dont have to import all my source (although thats not really a lot). Buuuuuut I don't know if this is exactly the intended usage of the services manager which seems to be more for like general services like "permission manager" or "currency database" or whatever. On the other hand though, it seems like it would be simpler than implementing my own spigot-like plugin loader or whatever and it hopefully eliminates the chances of getting flamed for static abuse sooooooooo.
