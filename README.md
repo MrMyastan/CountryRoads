@@ -33,7 +33,8 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [x] tab completion
 - [x] store by UUID?
 - [ ] system for limiting number of homes? an api for that? If making an api for it is possible?
-- [ ] put a little color in the error messages (actual color, not swearing, although maybe a swearing mode would be nifty...)
+- [x] put a little color in the error messages
+- [ ] ~~error messages: gordon ramsay edition mode~~
 - [ ] see if i can switch to just set and list instead of extra list in tab completion
 - [ ] store some frequently used returns in variables
 # Notes on the API idea
