@@ -13,11 +13,11 @@ import org.bukkit.entity.Player;
 public class CommandAddHome implements TabExecutor {
 
     SimpleHomesPlugin plugin;
-    ConfigurationSection users;
+    ConfigurationSection players;
 
-    public CommandAddHome(SimpleHomesPlugin mainInstance, ConfigurationSection usersSection) {
+    public CommandAddHome(SimpleHomesPlugin mainInstance, ConfigurationSection playersSection) {
         plugin = mainInstance;
-        users = usersSection;
+        players = playersSection;
     }
 
     @Override
@@ -41,12 +41,12 @@ public class CommandAddHome implements TabExecutor {
 
         // if the player doesn't have a section for storing their homes then create one so we don't
         // get an NPE trying to set a value or checking num of homes in it
-        if (!users.isConfigurationSection(toBeOwnerUUIDStr)) {
-            users.createSection(toBeOwnerUUIDStr).set("homes-remaining", maxHomes);
-            users.getConfigurationSection(toBeOwnerUUIDStr).createSection("homes");
+        if (!players.isConfigurationSection(toBeOwnerUUIDStr)) {
+            players.createSection(toBeOwnerUUIDStr).set("homes-remaining", maxHomes);
+            players.getConfigurationSection(toBeOwnerUUIDStr).createSection("homes");
         }
 
-        ConfigurationSection userHomes = users.getConfigurationSection(toBeOwnerUUIDStr);
+        ConfigurationSection userHomes = players.getConfigurationSection(toBeOwnerUUIDStr);
         
         if (maxHomes > 0 && userHomes.getInt("homes-remaining") <= 0) {
             sender.sendMessage(ChatColor.RED + "You have hit the limit for number of homes, delete one or override one");

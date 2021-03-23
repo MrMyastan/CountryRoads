@@ -6,7 +6,7 @@ import org.bukkit.plugin.ServicePriority;
 
 public class SimpleHomesPlugin extends JavaPlugin {
    
-    SimpleHomesAPI apiImpl = new SimpleHomesAPIImpl(this, getConfig().getConfigurationSection("user"));
+    SimpleHomesAPI apiImpl;
 
     // Fired when plugin is first enabled
     @Override
@@ -14,13 +14,14 @@ public class SimpleHomesPlugin extends JavaPlugin {
         
         saveDefaultConfig();
 
-        ConfigurationSection users = getConfig().getConfigurationSection("user");
-
-        this.getCommand("addhome").setExecutor(new CommandAddHome(this, users));
-        this.getCommand("home").setExecutor(new CommandHome(users));
-        this.getCommand("delhome").setExecutor(new CommandDelHome(this, users));
-
+        ConfigurationSection players = getConfig().getConfigurationSection("players");
+        
+        apiImpl = new SimpleHomesAPIImpl(this, players);
         this.getServer().getServicesManager().register(SimpleHomesAPI.class, apiImpl, this, ServicePriority.Normal);
+
+        this.getCommand("addhome").setExecutor(new CommandAddHome(this, players));
+        this.getCommand("home").setExecutor(new CommandHome(players));
+        this.getCommand("delhome").setExecutor(new CommandDelHome(this, players));
 
     }
 

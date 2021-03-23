@@ -1,5 +1,5 @@
-# max-number-of-homes sets the max amount of homes a player can have, set to 0 or less to disable the limit
+# initial-homes sets the initial amount of homes a player can have, set to 0 or less to disable the limit
 # homes stores the home locations, you can edit them if you want or even manually put one, 
 # just make sure to follow the right structure and use the right coords (dont want to teleport into dirt!)
-max-number-of-homes: 5
-users: {}
+initial-homes: 5
+players: {}

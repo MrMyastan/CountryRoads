@@ -18,11 +18,11 @@ import org.bukkit.util.StringUtil;
 public class CommandDelHome implements TabExecutor {
 
     SimpleHomesPlugin plugin;
-    ConfigurationSection users;
+    ConfigurationSection players;
 
-    public CommandDelHome(SimpleHomesPlugin mainInstance, ConfigurationSection usersSection) {
+    public CommandDelHome(SimpleHomesPlugin mainInstance, ConfigurationSection playersSection) {
         plugin = mainInstance;
-        users = usersSection;
+        players = playersSection;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CommandDelHome implements TabExecutor {
             OTHER IDEA: seperate managing (listing, deleting, teleporting to) other players homes into a 
             other homes command or smth */
             owner = null;
-            for (String key : users.getKeys(false)) {
+            for (String key : players.getKeys(false)) {
                 String homeHaver = Bukkit.getOfflinePlayer(UUID.fromString(key)).getName();
                 if (homeHaver.equals(args[1])) {
                     owner = key;
@@ -91,13 +91,22 @@ public class CommandDelHome implements TabExecutor {
 
         String path = owner + ".homes." + args[0];
 
-        if (!users.contains(path)) {
+        if (!players.contains(path)) {
             sender.sendMessage(ChatColor.RED + "Specified home could not be found");
             return false;
         }
 
-        users.set(path, null);
+        players.set(path, null);
         plugin.saveConfig();
+
+        if (plugin.getConfig().getInt("max-number-of-homes") > 0) {
+            ConfigurationSection userHomes = players.getConfigurationSection(owner);
+            int homesRemaining = userHomes.getInt("homes-remaining") + 1;
+            userHomes.set("homes-remaining", homesRemaining);
+            plugin.saveConfig();
+            ChatColor numHomesStatus = homesRemaining == 0 ? ChatColor.YELLOW : ChatColor.GREEN;
+            sender.sendMessage(numHomesStatus + "You now have " + homesRemaining + " home(s) remaining");
+        }
 
         return true;
     }
@@ -115,16 +124,16 @@ public class CommandDelHome implements TabExecutor {
             String teleporteeUUIDStr = teleportee.getUniqueId().toString();
 
             // see this section in CommandHome
-            if (!users.isConfigurationSection(teleporteeUUIDStr)) {return names;}
+            if (!players.isConfigurationSection(teleporteeUUIDStr)) {return names;}
 
             // get the names of the player's homes
-            Set<String> namesSet = users.getConfigurationSection(teleporteeUUIDStr + ".homes").getKeys(false);
+            Set<String> namesSet = players.getConfigurationSection(teleporteeUUIDStr + ".homes").getKeys(false);
             names.addAll(namesSet);
         } else if (args.length == 2) {
             if (!sender.hasPermission("simplehomes.manageotherhomes")) {return names;}
             
             // get the names of players with homes
-            for (String key : users.getKeys(false)) {
+            for (String key : players.getKeys(false)) {
                 String ownerName = Bukkit.getOfflinePlayer(UUID.fromString(key)).getName();
                 names.add(ownerName);
             }
