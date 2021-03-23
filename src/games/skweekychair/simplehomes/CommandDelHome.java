@@ -56,7 +56,8 @@ public class CommandDelHome implements TabExecutor {
         if (args.length >= 2) {
             if (!sender.hasPermission("simplehomes.manageotherhomes")) {
                 sender.sendMessage(ChatColor.RED + "You do not have permission to delete other people's home locations");
-                return false;
+                // not a syntax problem?
+                return true;
             }
 
             /* instead of getting a uuid from a name regardless if they are on or offline because
@@ -99,13 +100,18 @@ public class CommandDelHome implements TabExecutor {
         players.set(path, null);
         plugin.saveConfig();
 
-        if (plugin.getConfig().getInt("max-number-of-homes") > 0) {
+        if (plugin.getConfig().getInt("initial-homes") > 0) {
+            
             ConfigurationSection userHomes = players.getConfigurationSection(owner);
             int homesRemaining = userHomes.getInt("homes-remaining") + 1;
             userHomes.set("homes-remaining", homesRemaining);
             plugin.saveConfig();
-            ChatColor numHomesStatus = homesRemaining == 0 ? ChatColor.YELLOW : ChatColor.GREEN;
-            sender.sendMessage(numHomesStatus + "You now have " + homesRemaining + " home(s) remaining");
+
+            if (args.length == 1) {
+                ChatColor numHomesStatus = homesRemaining == 0 ? ChatColor.YELLOW : ChatColor.GREEN;
+                sender.sendMessage(numHomesStatus + "You now have " + homesRemaining + " home(s) remaining");
+            }
+
         }
 
         return true;

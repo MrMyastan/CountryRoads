@@ -37,7 +37,7 @@ public class CommandAddHome implements TabExecutor {
         Player toBeOwner = (Player) sender;
         String toBeOwnerUUIDStr = toBeOwner.getUniqueId().toString();
 
-        int maxHomes = plugin.getConfig().getInt("max-number-of-homes");
+        int maxHomes = plugin.getConfig().getInt("initial-homes");
 
         // if the player doesn't have a section for storing their homes then create one so we don't
         // get an NPE trying to set a value or checking num of homes in it
