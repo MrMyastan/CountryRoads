@@ -27,16 +27,5 @@ public class SimpleHomesAPIImpl implements SimpleHomesAPI {
     public int getNumHomes(UUID uuid) {
         return users.getInt(uuid + ".homes-remaining");
     }
-
-    // conveniance overloads
-    @Override
-    public int getNumHomes(OfflinePlayer player) {
-        return getNumHomes(player.getUniqueId());
-    }
-
-    @Override
-    public void changeNumHomes(OfflinePlayer player, int change) {
-        changeNumHomes(player.getUniqueId(), change);
-    }
-
+    
 }
