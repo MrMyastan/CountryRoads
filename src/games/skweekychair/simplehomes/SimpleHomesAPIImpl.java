@@ -2,7 +2,6 @@ package games.skweekychair.simplehomes;
 
 import java.util.UUID;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class SimpleHomesAPIImpl implements SimpleHomesAPI {
@@ -27,5 +26,5 @@ public class SimpleHomesAPIImpl implements SimpleHomesAPI {
     public int getNumHomes(UUID uuid) {
         return users.getInt(uuid + ".homes-remaining");
     }
-    
+
 }
