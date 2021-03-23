@@ -24,5 +24,4 @@ hs_err_pid*
 
 /.vscode
 
-# its uhh... in the name
-get-around-to-finishing/
+/export-api.cmd
