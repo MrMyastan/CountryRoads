@@ -13,11 +13,11 @@ import org.bukkit.entity.Player;
 public class CommandAddHome implements TabExecutor {
 
     SimpleHomesPlugin plugin;
-    ConfigurationSection homes;
+    ConfigurationSection users;
 
-    public CommandAddHome(SimpleHomesPlugin mainInstance) {
+    public CommandAddHome(SimpleHomesPlugin mainInstance, ConfigurationSection usersSection) {
         plugin = mainInstance;
-        homes = mainInstance.getConfig().getConfigurationSection("homes");
+        users = usersSection;
     }
 
     @Override
@@ -37,28 +37,32 @@ public class CommandAddHome implements TabExecutor {
         Player toBeOwner = (Player) sender;
         String toBeOwnerUUIDStr = toBeOwner.getUniqueId().toString();
 
+        int maxHomes = plugin.getConfig().getInt("max-number-of-homes");
+
         // if the player doesn't have a section for storing their homes then create one so we don't
         // get an NPE trying to set a value or checking num of homes in it
-        if (!homes.isConfigurationSection(toBeOwnerUUIDStr)) {
-            homes.createSection(toBeOwnerUUIDStr);
+        if (!users.isConfigurationSection(toBeOwnerUUIDStr)) {
+            users.createSection(toBeOwnerUUIDStr).set("homes-remaining", maxHomes);
+            users.getConfigurationSection(toBeOwnerUUIDStr).createSection("homes");
         }
 
-        ConfigurationSection userHomes = homes.getConfigurationSection(toBeOwnerUUIDStr);
+        ConfigurationSection userHomes = users.getConfigurationSection(toBeOwnerUUIDStr);
         
-        int maxHomes = plugin.getConfig().getInt("max-number-of-homes");
-        if (maxHomes > 0 && userHomes.getKeys(false).size() >= maxHomes) {
+        if (maxHomes > 0 && userHomes.getInt("homes-remaining") <= 0) {
             sender.sendMessage(ChatColor.RED + "You have hit the limit for number of homes, delete one or override one");
             return true;
         }
 
         // save the new home location in the players storage section
-        userHomes.set(args[0], toBeOwner.getLocation());
+        userHomes.set("homes." + args[0], toBeOwner.getLocation());
         plugin.saveConfig();
 
         if (maxHomes > 0) {
-            int numHomes = userHomes.getKeys(false).size();
-            ChatColor numHomesStatus = maxHomes - numHomes == 0 ? ChatColor.YELLOW : ChatColor.GREEN;
-            sender.sendMessage(numHomesStatus + "You now have " + (maxHomes - numHomes) + " home(s) remaining");
+            int homesRemaining = userHomes.getInt("homes-remaining") - 1;
+            userHomes.set("homes-remaining", homesRemaining);
+            plugin.saveConfig();
+            ChatColor numHomesStatus = homesRemaining == 0 ? ChatColor.YELLOW : ChatColor.GREEN;
+            sender.sendMessage(numHomesStatus + "You now have " + homesRemaining + " home(s) remaining");
         }
 
         return true;

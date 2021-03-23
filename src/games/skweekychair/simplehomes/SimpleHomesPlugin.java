@@ -1,6 +1,7 @@
 package games.skweekychair.simplehomes;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.configuration.ConfigurationSection;
 
 public class SimpleHomesPlugin extends JavaPlugin {
    
@@ -10,9 +11,12 @@ public class SimpleHomesPlugin extends JavaPlugin {
         
         saveDefaultConfig();
 
-        this.getCommand("addhome").setExecutor(new CommandAddHome(this));
-        this.getCommand("home").setExecutor(new CommandHome(getConfig().getConfigurationSection("homes")));
-        this.getCommand("delhome").setExecutor(new CommandDelHome(this));
+        ConfigurationSection users = getConfig().getConfigurationSection("user");
+
+        this.getCommand("addhome").setExecutor(new CommandAddHome(this, users));
+        this.getCommand("home").setExecutor(new CommandHome(users));
+        this.getCommand("delhome").setExecutor(new CommandDelHome(this, users));
+
 
     }
 

@@ -2,4 +2,4 @@
 # homes stores the home locations, you can edit them if you want or even manually put one, 
 # just make sure to follow the right structure and use the right coords (dont want to teleport into dirt!)
 max-number-of-homes: 5
-homes: {}
+users: {}

@@ -35,7 +35,7 @@ public class CommandHome implements TabExecutor {
         Player teleportee = (Player) sender;
 
         // Ty Tordek for this clever line of code
-        String path = teleportee.getUniqueId().toString() + "." + (args.length == 0 ? "default" : args[0]);
+        String path = teleportee.getUniqueId().toString() + ".homes." + (args.length == 0 ? "default" : args[0]);
 
         Location toTeleportTo = homes.getLocation(path);
 
@@ -61,7 +61,7 @@ public class CommandHome implements TabExecutor {
         if (args.length > 1 || sender instanceof Player != true) {return returns;}
 
         Player teleportee = (Player) sender;
-        String teleporteeUUIDStr = teleportee.getUniqueId().toString();
+        String teleporteeUUIDStr = teleportee.getUniqueId().toString() + ".homes";
 
         // if theres no section for storing the players homes, then return no home names, also convenietly makes
         // sure there is a config so we dont get an NPE when we get the keys (home names) for the players section
