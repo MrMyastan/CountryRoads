@@ -2,9 +2,12 @@ package games.skweekychair.simplehomes;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.plugin.ServicePriority;
 
 public class SimpleHomesPlugin extends JavaPlugin {
    
+    SimpleHomesAPI apiImpl = new SimpleHomesAPIImpl(this, getConfig().getConfigurationSection("user"));
+
     // Fired when plugin is first enabled
     @Override
     public void onEnable() {
@@ -17,6 +20,7 @@ public class SimpleHomesPlugin extends JavaPlugin {
         this.getCommand("home").setExecutor(new CommandHome(users));
         this.getCommand("delhome").setExecutor(new CommandDelHome(this, users));
 
+        this.getServer().getServicesManager().register(SimpleHomesAPI.class, apiImpl, this, ServicePriority.Normal);
 
     }
 
@@ -24,6 +28,7 @@ public class SimpleHomesPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         saveConfig();
+        this.getServer().getServicesManager().unregister(SimpleHomesAPI.class, apiImpl);
     }
 
 }
