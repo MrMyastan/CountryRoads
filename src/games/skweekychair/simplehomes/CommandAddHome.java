@@ -47,14 +47,21 @@ public class CommandAddHome implements TabExecutor {
         }
 
         ConfigurationSection userHomes = players.getConfigurationSection(toBeOwnerUUIDStr);
+        String path = "homes." + args[0];
+        
+        if (userHomes.isLocation(path)) {
+            userHomes.set(path, toBeOwner.getLocation());
+            plugin.saveConfig();
+            sender.sendMessage(ChatColor.GREEN + "Home \"" + args[0] + "\" overridden!");
+            return true;
+        }
         
         if (maxHomes > 0 && userHomes.getInt("homes-remaining") <= 0) {
             sender.sendMessage(ChatColor.RED + "You have hit the limit for number of homes, delete one or override one");
             return true;
         }
 
-        // save the new home location in the players storage section
-        userHomes.set("homes." + args[0], toBeOwner.getLocation());
+        userHomes.set(path, toBeOwner.getLocation());
         plugin.saveConfig();
 
         if (maxHomes > 0) {
