@@ -25,7 +25,7 @@ I've tested the plugin using a Spigot 1.16.1 server and made the plugin using th
   - if you lower the limit and a player has more than the new limit they can keep their homes but will have delete homes until they have less than the limit if they want to add a new home
 # Notes
 If you are using offline mode and for whatever reason one of your players changes their name (and thus their offline mode UUID) you will need to replace their old offline mode UUID with their new offline mode UUID in the config for them to get access to their homes again\
-Not sure what will happen if the entry for a person is doubled (ie, using offline mode and someone added home locations after changing their name and then you changed their old UUID to their new UUID so there are two sets of homes under the same UUID), so I would advise merging the two sets of entries\
+Not sure what will happen if the entry for a person is doubled (ie, using offline mode and someone added home locations after changing their name and then you changed their old UUID to their new UUID so there are two sets of homes under the same UUID), so I would advise merging the two sets of entries
 # To-Do
 - [x] write this readme
 - [x] improve error messages
@@ -40,5 +40,3 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [x] see if i can switch to just set and list instead of extra list in tab completion
 - [x] store some frequently used returns in variables
 - [ ] players can't override homes with negative homes remaining
-# Notes on the API idea
-It looks like the best way for me to implement an API for a number of homes thing or whatever for this plugin would be to define an interface and an implementation, in my plugin register the implementation (provider) for the interface (service) with Spigot's service manager, and then distribute the the interface as a jar or whatever that people can import in their project and set their plugin to depend on mine. It seems like a clean and simple way to allow plugins to integrate with mine and means they dont have to import all my source (although thats not really a lot). Buuuuuut I don't know if this is exactly the intended usage of the services manager which seems to be more for like general services like "permission manager" or "currency database" or whatever. On the other hand though, it seems like it would be simpler than implementing my own spigot-like plugin loader or whatever and it hopefully eliminates the chances of getting flamed for static abuse sooooooooo.
