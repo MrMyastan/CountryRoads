@@ -40,4 +40,4 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [ ] ~~error messages: gordon ramsay edition mode~~
 - [x] see if i can switch to just set and list instead of extra list in tab completion
 - [x] store some frequently used returns in variables
-- [ ] players can't override homes with negative homes remaining
+- [ ] players can't use the home system with negative homes remaining
