@@ -1,4 +1,4 @@
-package games.skweekychair.simplehomes;
+package games.skweekychair.countryroads;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,10 @@ import org.bukkit.entity.Player;
 
 public class CommandAddHome implements TabExecutor {
 
-    SimpleHomesPlugin plugin;
+    CountryRoadsPlugin plugin;
     ConfigurationSection players;
 
-    public CommandAddHome(SimpleHomesPlugin mainInstance, ConfigurationSection playersSection) {
+    public CommandAddHome(CountryRoadsPlugin mainInstance, ConfigurationSection playersSection) {
         plugin = mainInstance;
         players = playersSection;
     }

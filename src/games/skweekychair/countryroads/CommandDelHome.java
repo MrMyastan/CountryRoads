@@ -1,4 +1,4 @@
-package games.skweekychair.simplehomes;
+package games.skweekychair.countryroads;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,10 +17,10 @@ import org.bukkit.util.StringUtil;
 
 public class CommandDelHome implements TabExecutor {
 
-    SimpleHomesPlugin plugin;
+    CountryRoadsPlugin plugin;
     ConfigurationSection players;
 
-    public CommandDelHome(SimpleHomesPlugin mainInstance, ConfigurationSection playersSection) {
+    public CommandDelHome(CountryRoadsPlugin mainInstance, ConfigurationSection playersSection) {
         plugin = mainInstance;
         players = playersSection;
     }

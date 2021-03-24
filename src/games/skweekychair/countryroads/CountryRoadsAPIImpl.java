@@ -1,4 +1,4 @@
-package games.skweekychair.simplehomes;
+package games.skweekychair.countryroads;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,12 +9,12 @@ import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class SimpleHomesAPIImpl implements SimpleHomesAPI {
+public class CountryRoadsAPIImpl implements CountryRoadsAPI {
 
-    SimpleHomesPlugin plugin;
+    CountryRoadsPlugin plugin;
     ConfigurationSection users;
 
-    public SimpleHomesAPIImpl(SimpleHomesPlugin mainInstance, ConfigurationSection usersSection) {
+    public CountryRoadsAPIImpl(CountryRoadsPlugin mainInstance, ConfigurationSection usersSection) {
         plugin = mainInstance;
         users = usersSection;
     }

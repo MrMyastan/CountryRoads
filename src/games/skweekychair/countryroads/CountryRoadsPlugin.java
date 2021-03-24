@@ -1,12 +1,12 @@
-package games.skweekychair.simplehomes;
+package games.skweekychair.countryroads;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.ServicePriority;
 
-public class SimpleHomesPlugin extends JavaPlugin {
+public class CountryRoadsPlugin extends JavaPlugin {
    
-    SimpleHomesAPI apiImpl;
+    CountryRoadsAPI apiImpl;
 
     // Fired when plugin is first enabled
     @Override
@@ -16,8 +16,8 @@ public class SimpleHomesPlugin extends JavaPlugin {
 
         ConfigurationSection players = getConfig().getConfigurationSection("players");
         
-        apiImpl = new SimpleHomesAPIImpl(this, players);
-        this.getServer().getServicesManager().register(SimpleHomesAPI.class, apiImpl, this, ServicePriority.Normal);
+        apiImpl = new CountryRoadsAPIImpl(this, players);
+        this.getServer().getServicesManager().register(CountryRoadsAPI.class, apiImpl, this, ServicePriority.Normal);
 
         this.getCommand("addhome").setExecutor(new CommandAddHome(this, players));
         this.getCommand("home").setExecutor(new CommandHome(players));
@@ -29,7 +29,7 @@ public class SimpleHomesPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         saveConfig();
-        this.getServer().getServicesManager().unregister(SimpleHomesAPI.class, apiImpl);
+        this.getServer().getServicesManager().unregister(CountryRoadsAPI.class, apiImpl);
     }
 
 }

@@ -1,4 +1,4 @@
-package games.skweekychair.simplehomes;
+package games.skweekychair.countryroads;
 
 import java.util.Map;
 import java.util.Set;
@@ -10,7 +10,7 @@ import org.bukkit.Location;
  * The API class through which you can interact with my glorious, definitely
  * not terrible, plugin
  */
-public interface SimpleHomesAPI {
+public interface CountryRoadsAPI {
     /**
      * Adds [change] number of homes to the player specified by 
      * uuid. It is possible for a player to have a negative number of homes 

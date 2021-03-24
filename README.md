@@ -1,6 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Tested on: Spigot 1.16.1](https://img.shields.io/badge/Tested%20on-Spigot%201.16.1-yellow.svg?logo=minecraft)](https://www.spigotmc.org/) [![Languag: Java](https://img.shields.io/badge/Language-Java-red?logo=java)](https://www.java.com/en/) ![API Jar: 1.16.1-R0.1](https://img.shields.io/badge/API%20Jar-1.16.1--R0.1-blueviolet) ![Version: v1.1.1](https://img.shields.io/badge/Version-v1.1.1-blue) ![Why am I doing this?: I don't know](https://img.shields.io/badge/Why%20am%20I%20making%20these%3F-I%20don't%20know-lightgrey)\
-Well... shit. Turns out there is already a bukkit plugin called simplehomes designed for this exact purpose... looks like i need a new name!
-# SimpleHomes
+# CountryRoads (Take me Home)
 A basic Spigot-API Minecraft plugin for a home system.
 You can feel free to modify the code for your own use (just make sure to credit me for my code), and use the plugin for your own server!
 Any suggestions for improvements or features are welcome!
@@ -18,7 +17,7 @@ I've tested the plugin using a Spigot 1.16.1 server and made the plugin using th
   - will override an existing home location with the same name
   - a home named default will be the one a player is teleported to if they use /home without specifying which of their homes
 - delhome command
-  - removes the home location specified by name, people with the simplehomes.manageotherhomes permission can remove other players homes (specified by owner)
+  - removes the home location specified by name, people with the countryroads.manageotherhomes permission can remove other players homes (specified by owner)
   - all players have permission to use this command by default
   - ops have permission to delete other's homes by default
   - usage: /delhome \[name\] (owner)

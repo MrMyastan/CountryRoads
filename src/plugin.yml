@@ -1,25 +1,25 @@
-name: SimpleHomes
-main: games.skweekychair.simplehomes.SimpleHomesPlugin
+name: CountryRoads
+main: games.skweekychair.countryroads.CountryRoadsPlugin
 version: 1.3
 commands:
   addhome:
     description: add a new home at current locatin with name
     usage: /<command> [name]
-    permission: simplehomes.addhome
+    permission: countryroads.addhome
   home:
     description: go to home name default or specified by name
     usage: /<command> (name)
-    permission: simplehomes.home
+    permission: countryroads.home
   delhome:
     description: delete home specified by name, and optionally if you have manageotherhomes permission, the home owned by player
     usage: /<command> [name] (player)
-    permission: simplehomes.delhome
+    permission: countryroads.delhome
 permissions:
-  simplehomes.addhome:
+  countryroads.addhome:
     default: true
-  simplehomes.home:
+  countryroads.home:
     default: true
-  simplehomes.delhome:
+  countryroads.delhome:
     default: true
-  simplehomes.manageotherhomes:
+  countryroads.manageotherhomes:
     default: op
