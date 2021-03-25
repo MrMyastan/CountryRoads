@@ -41,3 +41,4 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [x] see if i can switch to just set and list instead of extra list in tab completion
 - [x] store some frequently used returns in variables
 - [ ] players can't use the home system with negative homes remaining
+- [ ] homes remaining command
