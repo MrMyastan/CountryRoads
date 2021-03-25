@@ -42,3 +42,4 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [x] store some frequently used returns in variables
 - [ ] players can't use the home system with negative homes remaining
 - [ ] homes remaining command
+- [ ] api methods ensure player has data store (or do on player join, maybe cache names?)
