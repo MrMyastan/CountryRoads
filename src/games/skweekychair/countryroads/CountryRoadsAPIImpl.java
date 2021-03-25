@@ -61,6 +61,7 @@ public class CountryRoadsAPIImpl implements CountryRoadsAPI {
         HashMap<String, Location> homes = new HashMap<String, Location>();
         ConfigurationSection homesSection = users.getConfigurationSection(uuid + ".homes");
 
+        // use a stream thing? 
         for (String key : homesSection.getKeys(false)) {
             // I'm ignoring invalid locations, should i be doing that?
             if (homesSection.isLocation(key)) {
@@ -75,6 +76,8 @@ public class CountryRoadsAPIImpl implements CountryRoadsAPI {
     public Set<UUID> getRegisteredUUIDS() {
         Set<UUID> uuids = new HashSet<UUID>();
 
+        // would using a stream thing be better? smth like
+        // users.getKeys(false).forEach(key -> uuids.add(UUID.fromString(key)));
         for (String key : users.getKeys(false)) {
             uuids.add(UUID.fromString(key));
         }

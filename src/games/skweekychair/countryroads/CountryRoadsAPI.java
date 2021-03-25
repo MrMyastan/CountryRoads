@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.bukkit.Location;
 
 /**
- * The API class through which you can interact with my glorious, definitely
- * not terrible, plugin
+ * The API interface through which you can interact with my glorious,
+ * definitely not terrible, plugin
  */
 public interface CountryRoadsAPI {
     /**
