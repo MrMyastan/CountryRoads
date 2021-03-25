@@ -25,3 +25,5 @@ hs_err_pid*
 /.vscode
 
 /export-api.cmd
+
+/bin/
