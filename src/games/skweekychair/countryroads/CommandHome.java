@@ -70,10 +70,6 @@ public class CommandHome implements TabExecutor {
         // get the names of all the players homes
         Set<String> names = players.getConfigurationSection(teleporteeUUIDStr).getKeys(false);
 
-        /* I dont think I can copy the partial matches back into itself, so construct a new list!
-        also I've been doing it like this cuz thats how I saw someone do it on the forums but I
-        think I can copy the partial matches of the set into the list so then I'll only need 
-        one list and dont have to addAll, so I should get around to trying that */
         StringUtil.copyPartialMatches(args[0], names, returns);
         Collections.sort(returns);
         return returns;
