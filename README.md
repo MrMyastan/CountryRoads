@@ -44,3 +44,5 @@ Not sure what will happen if the entry for a person is doubled (ie, using offlin
 - [ ] homes remaining command
 - [ ] api methods ensure player has data store (or do on player join, maybe cache names?)
 - [ ] switch from storing homes remaing to storing absolute amount (i think that will be simpler?)
+- [ ] disabling home limits doesnt freeze homes remaining?
+- [ ] tell homes remaining api utility function
